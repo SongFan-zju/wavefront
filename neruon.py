@@ -1,4 +1,5 @@
 import numpy as np
+from plot import path_plot
 
 
 class Weight:
@@ -75,7 +76,7 @@ class Map:
 
 
 if __name__ == "__main__":
-    map_value = np.load("map.npy")
+    map_value = np.load("example.npy")
     map = Map(map_value)
     start = (0, 0)
     end = (5, 5)
@@ -96,19 +97,14 @@ if __name__ == "__main__":
         if map.node[max_wgt.src].flag == 1:
             break
         path.append(max_wgt.src)
+    path_plot(map_value, [], "")
     if path[-1] == end:
+        path_plot(map_value, path)
         for i in path:
             print(i, end="")
             if i != end:
                 print("->", end="")
         print("\nSuccess!")
     else:
+        path_plot(map_value, [])
         print("Fail to find path!")
-"""
-. . . . . #
-# . . # . .
-. . . . . #
-. # . # # .
-# . . . . .
-. . # # . .
-"""
